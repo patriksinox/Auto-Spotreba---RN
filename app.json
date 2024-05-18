@@ -13,7 +13,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#161622"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "entitlements": {
         "com.apple.developer.networking.wifi-info": true
@@ -25,12 +27,15 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#161622"
       },
-      "package": "com.patrik1502.autoSpotreba"
+      "package": "com.patrik1502.autoSpotreba",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router"
+    ],
     "extra": {
       "router": {
         "origin": false
