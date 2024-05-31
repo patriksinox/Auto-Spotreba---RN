@@ -134,7 +134,7 @@ const Calculator = () => {
   };
 
   return (
-    <View className="mt-10 w-[95%] m-auto">
+    <View className="  w-[95%] mx-auto">
       <FormField
         title={`Vaša priemerná spotreba na 100km v ${MernaJednotka(
           vybranePalivo.nazov,
@@ -178,7 +178,7 @@ const Calculator = () => {
 
       <CustomButton
         title="Vypočítaj cenu cesty & spotrebu"
-        containerStyles={"mt-4"}
+        containerStyles={"mt-4 mb-4"}
         handlePress={vysledok}
         textStyles={"font-extrabold"}
       />

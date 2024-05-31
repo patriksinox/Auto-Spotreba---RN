@@ -8,14 +8,14 @@ const OfflineAd = ({ containerStyles }) => {
 
   return (
     <View
-      className={`p-4 border-2 border-secondary-100 rounded-2xl mb-8 mx-auto max-w-[95vw] w-[400px] ${containerStyles}`}
+      className={`p-3 border-2 border-secondary-100 rounded-2xl mb-8 mx-auto max-w-[95vw] w-[400px] ${containerStyles}`}
     >
-      <Text className={`${text} text-2xl mb-2`}>
+      <Text className={`${text} text-xl mb-2`}>
         Vytváranie vašej digitálnej prítomnosti
       </Text>
       <Text className={`${text}`}>Web stránky, eshopy a mobilné aplikácie</Text>
       <Text
-        className={`${text} text-2xl mt-3 font-extrabold`}
+        className={`${text} text-xl mt-3 font-extrabold`}
         onPress={openWeb}
         accessibilityLabel="Prejsť na web stránku tvorcu aplikácie."
       >

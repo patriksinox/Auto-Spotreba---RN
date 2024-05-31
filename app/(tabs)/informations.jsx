@@ -1,12 +1,10 @@
 import { View, Text, Linking } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useGlobalContext } from "../../context/GlobalProvider";
-import * as Animatable from "react-native-animatable";
-
 //Moje Importy
 import { Timer } from "../../lib/timer";
-import devLogo from "../../assets/images/devLogo.png";
 import CustomButton from "../../components/CustomButton";
+import CreatorLogo from "../../components/creatorLogo";
 
 const Informations = () => {
   //Získanie Dátumu
@@ -19,44 +17,25 @@ const Informations = () => {
     );
   };
 
-  const openWeb = () => {
-    Linking.openURL("https://www.patriksubjak.sk");
-  };
-
   return (
-    <SafeAreaView className="bg-primary h-full justify-around py-5">
-      <Animatable.Image
-        animation="slideInDown"
-        source={devLogo}
-        className="w-full max-h-[230px]"
-        resizeMode="contain"
-        alt="Logo tvorcu aplikácie Patrika Šubjaka."
-      />
-      <View className="-mt-5">
-        <Text
-          className="text-xl text-white text-center font-extrabold "
-          onPress={openWeb}
-          accessibilityLabel="Prejsť na web stránku tvorcu aplikácie Patrika Šubjaka."
-        >
-          www.patriksubjak.sk
+    <SafeAreaView className="bg-primary h-full py-5">
+      <CreatorLogo />
+      <View className="max-w-[90vw] mx-auto p-3 gap-y-1 my-auto">
+        <Text className="text-white text-lg text-center ">
+          Našli ste chybu alebo cena paliva nie je správna?
         </Text>
-      </View>
-
-      <View className="max-w-[90vw] mx-auto p-3 gap-y-2">
-        <Text className="text-white text-xl text-center">
-          Našli ste chybu alebo cena paliva nesedí ?
-        </Text>
-        <Text className="text-white text-xl text-center">Napíšte mi email</Text>
+        <Text className="text-white text-lg text-center">Napíšte mi email</Text>
         <CustomButton
           title="info@patriksubjak.sk"
-          containerStyles={"mt-4"}
+          containerStyles={"mt-2"}
           handlePress={sendEmail}
           textStyles={"font-semibold"}
           accessibilityLabel="Napísať email tvorcovi stránky na info@patriksubjak.sk"
         />
       </View>
-      <View className="max-w-[90vw] mx-auto p-3 gap-y-4">
-        <Text className="text-white text-xl text-center">
+
+      <View className="max-w-[90vw] mx-auto p-3 gap-y-2 mt-auto mb-3">
+        <Text className="text-white text-lg text-center">
           Ceny palív boli aktualizované dňa {Timer(datum)}
         </Text>
         <Text className="text-gray-200 text-md text-center">

@@ -8,11 +8,16 @@ import * as Animatable from "react-native-animatable";
 //Moje importy
 import { Timer } from "../../lib/timer";
 import CustomButton from "../../components/CustomButton";
+
 import OfflineAd from "../../components/offlineAd";
+import OnlineAD from "../../components/onlineAD";
+
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Result = () => {
   const { trasa, mernaJednotka, datum, suma, palivo } = useLocalSearchParams();
-  const textClass = `text-white text-center text-xl my-2`;
+  const { network } = useGlobalContext();
+  const textClass = `text-white text-center text-lg my-1`;
 
   const naspat = () => {
     router.push({
@@ -23,20 +28,19 @@ const Result = () => {
   return (
     <SafeAreaView className="bg-primary">
       <Animatable.View
-        className="h-full"
         animation="zoomInDown"
         duration={1000}
         easing={"ease-in"}
       >
-        <View>
-          <View className="border-2 border-secondary rounded-xl p-4 max-w-[95vw] w-[400px] items-center mx-auto mt-5">
+        <View className="h-full justify-between">
+          <View className="border-2 border-secondary rounded-xl p-3  max-w-[95vw] w-[400px] items-center mx-auto mt-5">
             <FontAwesome5 name="car" size={50} color="#FF9001" />
             {/* Výpočet z kalkulačky */}
-            <View className=" mt-2">
+            <View className="mt-1">
               <Text className={`${textClass}`}>
-                Na <Text className="font-bold text-xl">{trasa} km </Text>
+                Na <Text className="font-bold text-lg">{trasa} km </Text>
                 miniete{" "}
-                <Text className="font-bold text-xl">
+                <Text className="font-bold text-lg">
                   {palivo} {mernaJednotka}
                 </Text>
                 {mernaJednotka === "kWh" ? "." : " paliva."}
@@ -56,16 +60,19 @@ const Result = () => {
               </Text>
             </View>
           </View>
-
           <CustomButton
             title="Vypočítaj inú trasu"
-            containerStyles={"mt-5 max-w-[95vw] w-[400px] mx-auto"}
+            containerStyles={"mt-2 max-w-[95vw] w-[400px] mx-auto mb-2"}
             handlePress={naspat}
             textStyles={"font-extrabold"}
           />
-        </View>
 
-        <OfflineAd containerStyles={"mt-auto"} />
+          {network.isConnected ? (
+            <OnlineAD />
+          ) : (
+            <OfflineAd containerStyles={"mt-auto"} />
+          )}
+        </View>
       </Animatable.View>
     </SafeAreaView>
   );

@@ -6,12 +6,11 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //Moje importy
-import topLogo from "../../assets/icon.png";
+import topLogo from "../../assets/icon2.png";
 import Calculator from "../../components/calculator";
 
 const Index = () => {
@@ -23,17 +22,15 @@ const Index = () => {
         className="flex-1"
       >
         <Pressable onPress={Keyboard.dismiss}>
-          <ScrollView className="w-full max-w-[450px] mx-auto">
-            <View className="flex items-center justify-center gap-2 ">
-              <Image
-                source={topLogo}
-                className="w-full h-[250px]"
-                resizeMode="contain"
-              />
-            </View>
+          <View className="flex justify-around h-full ">
+            <Image
+              source={topLogo}
+              className="w-full h-[200px]"
+              resizeMode="contain"
+            />
 
             <Calculator />
-          </ScrollView>
+          </View>
         </Pressable>
       </KeyboardAvoidingView>
     </SafeAreaView>

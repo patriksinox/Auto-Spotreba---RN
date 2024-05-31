@@ -10,6 +10,7 @@ import { MesiacChart } from "../../lib/mesiacChart";
 import { Timer } from "../../lib/timer";
 import Offline from "../../components/offline";
 import OfflineAd from "../../components/offlineAd";
+import OnlineAD from "../../components/onlineAD";
 
 const Charts = () => {
   const { benzin95, benzin98, nafta, lpg, elektroAC, elektroDC, network } =
@@ -31,7 +32,7 @@ const Charts = () => {
   //Dáta pre chart
   const data = posledneMesiace?.map((item, index) => {
     return {
-      value: parseFloat(item),
+      value: parseFloat(item) > 1 ? parseFloat(item) / 1.5 : parseFloat(item),
       label: mesiace[index],
       topLabelComponent: () => (
         <Text style={{ color: "white", fontSize: 16, marginBottom: 6 }}>
@@ -58,50 +59,59 @@ const Charts = () => {
 
   return (
     <SafeAreaView className="bg-primary h-full">
-      <PickerField
-        title={`Pohonná látka - ${
-          vybranePalivo.data?.slice(-1)[0]
-        } € / ${MernaJednotka(vybranePalivo.nazov)} aktuálne`}
-        placeholder="6 litrov"
-        handleChangeText={nastaveniePaliva}
-        otherStyles={"max-w-[95%] w-full mx-auto"}
-        chartStyles={"border-secondary-200"}
-      />
-      <View className="mx-3 border-secondary-200 border-2 border-t-0 rounded-b-2xl p-4 mt-3 ">
-        <Text className="text-center text-white mb-2 text-base font-semibold">
-          Cena je na 1 {MernaJednotka(vybranePalivo.nazov, "chart")}
-        </Text>
-        <View className="mx-auto">
-          <BarChart
-            showFractionalValues
-            maxValue={2.8}
-            data={data?.length > 0 ? data : [{ value: 0 }]}
-            isAnimated
-            hideRules
-            yAxisThickness={0}
-            xAxisThickness={0}
-            hideYAxisText
-            isThreeD
-            sideColor={"#ed8404"}
-            topColor={"#ed8404"}
-            frontColor={"#FF8E01"}
-            barWidth={38}
-            xAxisLabelTextStyle={{
-              color: "white",
-              textAlign: "center",
-            }}
-            xAxisLabelsHeight={20}
-          />
+      <View className="h-full min-h-[100vh]">
+        <PickerField
+          title={`Pohonná látka - ${
+            vybranePalivo.data?.slice(-1)[0]
+          } € / ${MernaJednotka(vybranePalivo.nazov)} aktuálne`}
+          placeholder="6 litrov"
+          handleChangeText={nastaveniePaliva}
+          otherStyles={"max-w-[95%] w-full mx-auto"}
+          chartStyles={"border-secondary-200"}
+        />
+        <View className="mx-3 border-secondary-200 border-2 border-t-0 rounded-b-2xl  py-1 px-2 mt-3 ">
+          <Text className="text-center text-white mb-1 text-base font-semibold">
+            Cena je na 1 {MernaJednotka(vybranePalivo.nazov, "chart")}
+          </Text>
+          <View className="mx-auto">
+            <BarChart
+              showFractionalValues
+              /*  maxValue={2.3} */
+              data={data?.length > 0 ? data : [{ value: 0 }]}
+              isAnimated
+              hideRules
+              yAxisThickness={0}
+              xAxisThickness={0}
+              hideYAxisText
+              isThreeD
+              sideColor={"#ed8404"}
+              topColor={"#ed8404"}
+              frontColor={"#FF8E01"}
+              barWidth={38}
+              xAxisLabelTextStyle={{
+                color: "white",
+                textAlign: "center",
+              }}
+              xAxisLabelsHeight={20}
+              initialSpacing={10}
+            />
+          </View>
         </View>
+        <View>
+          <Text
+            className={` text-center text-gray-100 text-base my-2 font-bold mt-2 text-md`}
+          >
+            {benzin95.datum &&
+              `Ceny boli aktualizované dňa ${Timer(benzin95.datum)}`}
+          </Text>
+        </View>
+
+        {network.isConnected ? (
+          <OnlineAD />
+        ) : (
+          <OfflineAd containerStyles={"my-auto"} />
+        )}
       </View>
-      <View className="mb-auto">
-        <Text
-          className={`text-white text-center text-xl my-2 font-bold mt-2 text-md`}
-        >
-          Ceny boli aktualizované dňa {Timer(benzin95.datum)}
-        </Text>
-      </View>
-      <OfflineAd />
     </SafeAreaView>
   );
 };
