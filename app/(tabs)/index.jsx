@@ -1,12 +1,5 @@
 //Systémové importy
-import {
-  View,
-  Image,
-  Pressable,
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { Image, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //Moje importy
@@ -16,23 +9,18 @@ import Calculator from "../../components/calculator";
 const Index = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={80}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1"
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        keyboardShouldPersistTaps="handled"
       >
-        <Pressable onPress={Keyboard.dismiss}>
-          <View className="flex justify-around h-full ">
-            <Image
-              source={topLogo}
-              className="w-full h-[200px]"
-              resizeMode="contain"
-            />
+        <Image
+          source={topLogo}
+          className="w-full h-[200px]"
+          resizeMode="contain"
+        />
 
-            <Calculator />
-          </View>
-        </Pressable>
-      </KeyboardAvoidingView>
+        <Calculator />
+      </ScrollView>
     </SafeAreaView>
   );
 };

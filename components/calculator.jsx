@@ -134,7 +134,7 @@ const Calculator = () => {
   };
 
   return (
-    <View className="  w-[95%] mx-auto">
+    <View className="w-[95%] mx-auto mt-20">
       <FormField
         title={`Vaša priemerná spotreba na 100km v ${MernaJednotka(
           vybranePalivo.nazov,

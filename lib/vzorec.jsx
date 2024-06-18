@@ -1,5 +1,5 @@
 export const Vzorec = (hodnota) => {
-  if (hodnota > 1 && hodnota < 10) {
+  if (hodnota >= 1 && hodnota <= 10) {
     return 1.25;
   }
   if (hodnota > 10 && hodnota <= 50) {
