@@ -3,7 +3,7 @@
     "name": "Auto Spotreba",
     "slug": "autoSpotreba",
     "scheme": "auto-spotreba",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -31,7 +31,7 @@
         "backgroundColor": "#161622"
       },
       "package": "com.patrik1502.autoSpotreba",
-      "versionCode": 6
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"

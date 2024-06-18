@@ -31,7 +31,9 @@ const Calculator = () => {
       cenaPaliva = parseFloat(vybranePalivo.data?.slice(-1)[0]);
     else cenaPaliva = vybranePalivo;
     if (!cenaPaliva) return;
+
     cenaPaliva = parseFloat(cenaPaliva);
+
     const jedenKM = priemernaSpotreba / 100;
     const celkovaSpotrebaPaliva = jedenKM * dlzkaTrasy;
     const suma = cenaPaliva * celkovaSpotrebaPaliva * vzorec;
@@ -98,6 +100,7 @@ const Calculator = () => {
 
   //Použitie paliva
   useEffect(() => {
+    if (vlastnaCena) return;
     if (Object.keys(vybranePalivo).length === 0) setVybranePalivo(benzin95);
     if (vybranePalivo === "undefined") setVybranePalivo(benzin95);
     if (vybranePalivo.data?.length === 0) setVybranePalivo(benzin95);
