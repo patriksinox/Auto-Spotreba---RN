@@ -69,6 +69,7 @@ const Calculator = () => {
         datum: vybranePalivo?.datum,
         suma: suma,
         palivo: minutePalivo.toFixed(2),
+        vlastnaCena: vlastnaCena,
       },
     });
   };
@@ -135,6 +136,12 @@ const Calculator = () => {
   const check = () => {
     setVlastnaCena(!vlastnaCena);
   };
+
+  useEffect(() => {
+    if (network.isConnected !== undefined) {
+      if (!network.isConnected) setVlastnaCena(true);
+    }
+  }, [network.isConnected]);
 
   return (
     <View className="w-[95%] mx-auto mt-20">

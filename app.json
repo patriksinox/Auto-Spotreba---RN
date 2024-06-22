@@ -31,7 +31,7 @@
         "backgroundColor": "#161622"
       },
       "package": "com.patrik1502.autoSpotreba",
-      "versionCode": 8
+      "versionCode": 9
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -15,8 +15,11 @@ import OnlineAD from "../../components/onlineAD";
 import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Result = () => {
-  const { trasa, mernaJednotka, datum, suma, palivo } = useLocalSearchParams();
+  const { trasa, mernaJednotka, datum, suma, palivo, vlastnaCena } =
+    useLocalSearchParams();
   const { network } = useGlobalContext();
+  const vlastnaBool = vlastnaCena === "false" ? false : true;
+
   const textClass = `text-white text-center text-lg my-1`;
 
   const naspat = () => {
@@ -50,14 +53,24 @@ const Result = () => {
                 Celková suma vašej jazdy je{" "}
                 <Text className="font-bold text-xl">{suma} €</Text>
               </Text>
-              <View className="border-t-2 border-secondary mt-5 justify-center" />
-              <Text className={`${textClass} font-bold mt-2 text-md`}>
-                Ceny boli aktualizované dňa {Timer(datum)}
-              </Text>
-              <Text className="text-gray-200 text-xs text-center">
-                Ceny palív sú priemerné a sú brané zo všetkých čerpacích staníc
-                na územi Slovenskej Republiky.
-              </Text>
+              <View className="border-t-2 border-secondary mt-5 mb-2 justify-center" />
+
+              {!vlastnaBool && (
+                <Text className={`${textClass} font-bold mt-2 text-md`}>
+                  Ceny boli aktualizované dňa {Timer(datum)}
+                </Text>
+              )}
+
+              {vlastnaBool ? (
+                <Text className="text-gray-200 text-lg text-center">
+                  Dúfam že bola moja aplikácia nápomocná 😊.
+                </Text>
+              ) : (
+                <Text className="text-gray-200 text-xs text-center">
+                  Ceny palív sú priemerné a sú brané zo všetkých čerpacích
+                  staníc na územi Slovenskej Republiky.
+                </Text>
+              )}
             </View>
           </View>
           <CustomButton
